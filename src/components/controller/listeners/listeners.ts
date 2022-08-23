@@ -1,6 +1,8 @@
-import { RegisterElements } from '../../interfaces/registerElements';
+
+import { RegisterElements } from '../../interfaces/RegisterElements';
 import { User } from '../../interfaces/User';
 import { registerRequest, registerValidation } from './registration';
+import getRequestFormData from '../dataHandlers/getRequestFormData';
 
 function showRegister(): void {
   const registerModal = document.querySelector('.modal-register') as HTMLElement;
@@ -81,11 +83,17 @@ export function registerSubmitListener() {
   });
 }
 
+export function createRequestListener(): void {
+  const requestForm = document.getElementById('requestForm') as HTMLFormElement;
+  requestForm.addEventListener('submit', getRequestFormData);
+}
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
   openRequestWindowListener();
   openHelpWindowListener();
+  createRequestListener();
   closeModalWindowListener();
   registerSubmitListener();
 }

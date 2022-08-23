@@ -64,8 +64,8 @@
   justify-content: space-around;
 }
 .btn{
-  width: 130px;
-  height: 40px;
+  min-width: 130px;
+  min-height: 40px;
   margin: 15px 5px;
   border: 3px solid #793CFB;
   border-radius: 50px;
@@ -80,8 +80,8 @@
   color: white;
 }
 .circle-btn{
-  width: 42px;
-  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
   border-radius: 50%;
   align-self: flex-end;
 }
