@@ -1,4 +1,5 @@
 import getRequestFormData from '../dataHandlers/getRequestFormData';
+import Main from '../../view/main/main';
 
 function showRegister(event: Event): void {
   const registerModal = document.querySelector('.modal-register') as HTMLElement;
@@ -24,13 +25,6 @@ function showLogin(event: Event): void {
   registerModal.classList.remove('modal--active');
 }
 
-function showRequest(): void {
-  const requestModal = document.querySelector('.modal-request') as HTMLElement;
-
-  requestModal.classList.remove('modal--hidden');
-  requestModal.classList.add('modal--active');
-}
-
 function hideModal(): void {
   const registerModal: NodeListOf<Element> = document.querySelectorAll('.modal');
 
@@ -38,6 +32,22 @@ function hideModal(): void {
     item.classList.remove('modal--active');
     item.classList.add('modal--hidden');
   });
+}
+
+function userPageRequests(): void {
+  const main = document.querySelector('main') as HTMLElement;
+  const newMain: Main = new Main();
+  main.innerHTML = '';
+  main.innerHTML += newMain.getUserFiltersSection();
+  main.innerHTML += newMain.getUsersRequestsSection();
+  main.innerHTML += newMain.getUserPaginationBtnsSection();
+}
+
+function showRequest(): void {
+  const requestModal = document.querySelector('.modal-request') as HTMLElement;
+
+  requestModal.classList.remove('modal--hidden');
+  requestModal.classList.add('modal--active');
 }
 
 export function openRegisterWindowListener(): void {
@@ -56,20 +66,12 @@ export function closeModalWindowListener(): void {
 
 export function openLoginWindowListener(): void {
   const loginBtn = document.getElementById('login') as HTMLButtonElement;
+  const requestBtn = document.getElementById('requestSpan') as HTMLButtonElement;
+  const helpBtn = document.getElementById('helpSpan') as HTMLButtonElement;
 
   loginBtn.addEventListener('click', showLogin);
-}
-
-export function openRequestWindowListener(): void {
-  const requestBtn = document.getElementById('requestSpan') as HTMLButtonElement;
-
-  requestBtn.addEventListener('click', showRequest);
-}
-
-export function openHelpWindowListener(): void {
-  const requestBtn = document.getElementById('helpSpan') as HTMLButtonElement;
-
   requestBtn.addEventListener('click', showLogin);
+  helpBtn.addEventListener('click', showLogin);
 }
 
 export function createRequestListener(): void {
@@ -96,15 +98,31 @@ export function openLoginWindowFromRegister(): void {
   registerBtn.addEventListener('click', showLogin);
 }
 
+export function renderUserPageRequests(): void {
+  const requestsBtn = document.querySelector('.buttons-section__btn-requests') as HTMLButtonElement;
+  
+  requestsBtn.addEventListener('click', userPageRequests);
+}
+
+export function openRequestWindowListener(): void {
+  const requestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
+
+  requestBtn.addEventListener('click', showRequest);
+}
+
 export function addListeners(): void {
   openRegisterWindowListener();
   openLoginWindowListener();
-  openRequestWindowListener();
-  openHelpWindowListener();
   openLoginWindowFromCard();
   openRegisterWindowFromLogin();
   openLoginWindowFromRegister();
   createRequestListener();
+  closeModalWindowListener();
+}
+
+export function addUserListeners(): void {
+  renderUserPageRequests();
+  openRequestWindowListener();
   closeModalWindowListener();
 }
 

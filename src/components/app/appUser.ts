@@ -1,4 +1,4 @@
-import { addListeners } from '../controller/listeners/listenersUser';
+import { addUserListeners } from '../controller/listeners/listeners';
 import Footer from '../view/footer/footer';
 import Header from '../view/header/header';
 import Main from '../view/main/main';
@@ -26,7 +26,7 @@ export default class AppUser {
     this.body.append(this.header.render('user'));
     this.body.append(this.main.render('user'));
     this.body.append(this.footer.render());
-    addListeners();
+    addUserListeners();
     return this.body;
   }
 }

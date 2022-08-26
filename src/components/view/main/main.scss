@@ -129,6 +129,11 @@
     display: flex;
     align-self: center;
   }
+
+  &__login-btn {
+    color: #fff;
+    background-color: #793CFB;
+  }
 }
 
 .thanks-section {
@@ -285,6 +290,11 @@
   flex-direction: row;
   justify-content: center;
   margin-bottom: 90px;
+
+  &__btn-requests {
+    color: #fff;
+    background-color: #793CFB;
+  }
 
   &__frame7 {
     position: absolute;

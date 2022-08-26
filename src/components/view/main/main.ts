@@ -180,7 +180,7 @@ export default class Main {
       <div class="buttons-section__frame7"></div>
       <button class="btn buttons-section__btn-apply">Оставить заявку</button>
       <button class="btn buttons-section__btn-requests">Помочь</button>
-      <button class="btn buttons-section__btn-requests">История заявок</button>
+      <button class="btn buttons-section__btn-history">История заявок</button>
     </section>`;
   }
 
