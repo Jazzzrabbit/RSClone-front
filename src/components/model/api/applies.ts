@@ -42,7 +42,8 @@ export async function  createApply(apply: Apply) {
     });
     if (response.status === 200) {
       return showMessage('Заявка успешно создана');
-    } else return  showMessage(`Ошибка ${response.status}`, true);
+    } else if (response.status === 400) return showMessage('Не все обязательные поля заполнены!', true);
+    else return  showMessage(`Ошибка ${response.status}`, true);
   } catch (err) {
     if (err instanceof Error)
       return showMessage('Проблемы с подключением к серверу', true);
