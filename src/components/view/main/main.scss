@@ -1035,6 +1035,10 @@
   justify-content: space-between;
   width: 100%;
 
+  @media (max-width: 768px) {
+    justify-content: unset;
+  }
+
   &__title {
     font-family: "Roboto Flex";
     letter-spacing: 1px;
