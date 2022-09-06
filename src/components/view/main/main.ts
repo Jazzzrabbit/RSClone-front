@@ -255,7 +255,7 @@ export default class Main {
         <div class="user-rating__name-body">
           <div>${num}</div>
           <div class="user-rating__main-ava">
-            <img src="${ava}" alt="Avatar">
+            <img class="avatar" src="${ava}" alt="Avatar">
           </div>
           <span class="user-rating__name-name">${name}</span>
         </div>

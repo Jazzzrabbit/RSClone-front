@@ -10,7 +10,7 @@ import getFilter from '../../utils/filters';
 import Modal from '../../view/modal/modal';
 import { Apply, Thanks, ThanksCollection } from '../../model/type/type';
 import { showFiltersMenu, innerTextClosed, hideFiltersMenu } from '../../utils/filtersMenuToggle';
-import { closeApply, createApply, getApply } from '../../model/api/applies';
+import { closeApply, createApply, getApply, removeParticipation } from '../../model/api/applies';
 import getPageMyRequests from '../../utils/renderMyRequestCard';
 import getPageMyParticipates from '../../utils/renderMyParticipateCard';
 import { allApplies, getMyCreatedApplies, getOpenApplies, 
@@ -357,12 +357,18 @@ function myPageParticipates(): void {
   const usersMainSection = document.querySelector('.users-main-section') as HTMLElement;
   const newMain: Main = new Main();
   usersMainSection.innerHTML = '';
-  usersMainSection.innerHTML += newMain.getMyParticipates();
-  //usersMainSection.innerHTML += newMain.getUserPaginationBtnsSection(); 
+  usersMainSection.innerHTML += newMain.getMyParticipates(); 
   getPageMyParticipates(myParticipates);
   openUserCloseRequestListener();
-  //const openRequestBtn = document.querySelector('.buttons-section__btn-apply') as HTMLButtonElement;
-  //openRequestBtn.addEventListener('click', showRequest);
+  const btns = document.querySelectorAll('.my-participate__close');
+  [...btns].map(btn => btn.addEventListener('click', (event)=> {
+    event.preventDefault();
+    const currentBtn = event.target as HTMLButtonElement;
+    const applyId = currentBtn.getAttribute('applyId');
+    if (!applyId) return showMessage('что-то пошло не так', true);
+    removeParticipation(+applyId);
+    setTimeout(()=>location.reload(), 2500);
+  }));
 }
 export function renderMyParticipates(): void {
   const myParticipatesBtn = document.querySelector('.my-participates-btn') as HTMLButtonElement;  

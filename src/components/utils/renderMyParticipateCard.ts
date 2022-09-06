@@ -26,7 +26,7 @@ function createDivMyParticipateCard(data: ApplyWithUser) {
         </ul>
       </div>
       <div class="card__btn">
-        <button class="btn color-btn my-requests__close" participateId = "${data.id}">Отклонить мое предложение</button>
+        <button class="btn color-btn my-participate__close" applyId = "${data.id}">Отклонить мое предложение</button>
       </div>                
       `;
   return div;

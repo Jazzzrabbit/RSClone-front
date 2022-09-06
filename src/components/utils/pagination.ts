@@ -2,6 +2,7 @@ import createDivItemCard from './renderRequestCard';
 import { ApplyWithUser } from '../model/type/type';
 import { pageState } from '../model/pageState';
 import { participateInApply } from '../model/api/applies';
+import { showMessage } from './showMessage';
 
 const userPage: string = pageState[1];
 
@@ -37,8 +38,9 @@ export function pagination(array: ApplyWithUser[]) {
     const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
     [...helpBtns].map(item => item.addEventListener('click', (event)=>{
       const applyId = (event?.target as HTMLElement).getAttribute('applyId');
-      if (applyId)
-        participateInApply(+applyId);
+      if (!applyId) return showMessage('Что-то не так с заявкой', true);
+      participateInApply(+applyId);
+      setTimeout(()=>location.reload(), 2500);
     }));    
   } 
   createPageWithFilters(indexStartRender);

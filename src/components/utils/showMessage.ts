@@ -14,5 +14,3 @@ export function showMessage(textMessage: string, error = false) {
 }
 
 
-// Подключаем так:
-//слушатель.addEventListener('событие', function (){ showMessage('hello word'); });

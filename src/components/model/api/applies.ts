@@ -99,11 +99,11 @@ export async function removeParticipation(applyId: number ) {
       },
     });
     if (response.status === 200) {
-      showMessage('Заявка на помощь убрана');
-    } else showMessage(`Ошибка ${response.status}`, true);
+      return showMessage('Заявка на помощь убрана');
+    } else return showMessage(`Ошибка ${response.status}`, true);
   } catch (err) {
     if (err instanceof Error)
-      showMessage('Проблемы с подключением к серверу', true);
+      return showMessage('Проблемы с подключением к серверу', true);
   }
 }
 
