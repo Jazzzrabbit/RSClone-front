@@ -389,7 +389,13 @@ function UserRating(): void {
   const usersMainSection = document.querySelector('.users-main-section') as HTMLElement;
   const newMain: Main = new Main();  
   usersMainSection.innerHTML = '';
-  usersMainSection.innerHTML += newMain.getRating(sortedUsers);    
+  usersMainSection.innerHTML += newMain.getRating(sortedUsers);  
+  const wrapper = document.querySelector('.user-section-main__wrapper') as HTMLElement;
+  const section = document.querySelector('.users-main-section') as HTMLElement;
+  const menuSection = document.querySelector('.menu-section') as HTMLElement;
+  wrapper.classList.add('u-rating-wrapper');
+  section.classList.add('u-rating-section');
+  menuSection.classList.add('u-rating-menu');
   openUserCloseRequestListener();
 }
 export function renderUserRating(): void {

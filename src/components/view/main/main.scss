@@ -974,6 +974,7 @@
     width: 242px;
     height: 156px;      
     background: url(./components/assets/img/Frame10.png) 50%/contain no-repeat; 
+    z-index: 0;
 
     @media (max-width: 1200px) {
       width: 202px;
@@ -991,9 +992,30 @@
     }
   }
 }
+
+.u-rating-wrapper {
+  @media (max-width: 414px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.u-rating-section {
+  @media (max-width: 414px) {
+    margin: 0 auto;
+  }
+}
+
+.u-rating-menu {
+  @media (max-width: 414px) {
+    margin: 0 auto;
+  }
+}
+
 .menu-section {
   max-width: 14rem;
   position: relative;
+  z-index: 1;
 
   @media (max-width: 768px) {
     max-width: 12rem;
