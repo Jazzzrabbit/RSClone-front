@@ -1,9 +1,10 @@
 import createDivItemCard from './renderRequestCard';
 import { showLogin } from '../controller/listeners/listeners';
 import { pageState } from '../model/pageState';
-import { allApplies } from '../controller/dataHandlers/applyFilters';
+import { allApplies, getOpenApplies } from '../controller/dataHandlers/applyFilters';
 const mainPage: string = pageState[0];
 
+const applies = getOpenApplies(allApplies);
 export default function carousel() {
   const cards = document.querySelector('.slider__items') as HTMLElement;
   const ITEM_LEFT = document.querySelector('.slider__item-left') as HTMLElement;
@@ -13,6 +14,8 @@ export default function carousel() {
   const BTN_RIGHT = document.querySelector('.next') as HTMLElement;
   let currentIndex = 0;
   let cardsOnPage: number;
+
+
 
   if (window.matchMedia('(max-width: 767px)').matches) {
     cardsOnPage = 1; 
@@ -24,11 +27,11 @@ export default function carousel() {
   
   function createCards(index: number) {    
     for (index; index < cardsOnPage; index++) {
-      const divLeft = createDivItemCard(allApplies[index], mainPage);
+      const divLeft = createDivItemCard(applies[index], mainPage);
       if (divLeft) ITEM_LEFT.appendChild(divLeft); 
-      const divActiv = createDivItemCard(allApplies[index + cardsOnPage], mainPage);
+      const divActiv = createDivItemCard(applies[index + cardsOnPage], mainPage);
       if (divActiv) ITEM_ACTIVE.appendChild(divActiv);
-      const divRight = createDivItemCard(allApplies[index + (cardsOnPage * 2)], mainPage);
+      const divRight = createDivItemCard(applies[index + (cardsOnPage * 2)], mainPage);
       if (divRight) ITEM_RIGHT.appendChild(divRight);       
     } 
     const helpBtns: NodeListOf<Element> = document.querySelectorAll('.card__login-btn');
@@ -59,8 +62,8 @@ export default function carousel() {
       ITEM_ACTIVE.innerHTML = ITEM_LEFT.innerHTML;
       ITEM_LEFT.innerHTML = '';
       while (cardsWhile) {
-        if (currentIndex === 0) currentIndex = allApplies.length - 1;
-        const div = createDivItemCard(allApplies[currentIndex], mainPage);
+        if (currentIndex === 0) currentIndex = applies.length - 1;
+        const div = createDivItemCard(applies[currentIndex], mainPage);
         if (div) ITEM_LEFT.appendChild(div);
         currentIndex--;
         cardsWhile--;
@@ -74,8 +77,8 @@ export default function carousel() {
       ITEM_ACTIVE.innerHTML = ITEM_RIGHT.innerHTML;     
       ITEM_RIGHT.innerHTML = '';     
       while (cardsWhile) {   
-        if (currentIndex === allApplies.length) currentIndex = 0;     
-        const div = createDivItemCard(allApplies[currentIndex], mainPage);
+        if (currentIndex === applies.length) currentIndex = 0;     
+        const div = createDivItemCard(applies[currentIndex], mainPage);
         if (div) ITEM_RIGHT.appendChild(div);
         currentIndex++;
         cardsWhile--;

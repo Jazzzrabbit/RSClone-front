@@ -387,10 +387,11 @@
 
 
     &-ava{
-      width:53px;
-      height: 53px;
+
 
       & img{
+        width:53px;
+        height: 53px;
         object-fit: cover;
         border-radius: 50%;
       }
@@ -534,8 +535,8 @@
   }
 
   &__ava {
-    max-width: 63px;
-    max-height: 63px;
+    width: 63px;
+    height: 63px;
     object-fit: cover;
     border-radius: 50%;
   }
@@ -629,6 +630,7 @@
   }
 }
 .avatar{
+  width: 63px;
   height: 63px;
   border-radius: 50%;
   object-fit: cover;

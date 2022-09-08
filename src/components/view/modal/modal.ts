@@ -289,15 +289,16 @@ export default class Modal {
             <div class="user-info__subtitles">
               <p class="user-info__subtitle">Логин:</p>
               <p class="user-info__subtitle">Почта:</p>
-              <p class="user-info__subtitle">Рейтинг:</p>
+              <p class="user-info__subtitle">Имя:</p>
             </div>
-            <form class="user-info__form">
+            <form class="user-info__form" id="changeProfileForm">
               <div class="user-info__inputs">
-                <input type="text" class="user-info__input content__sex" placeholder="${user.login}">
-                <input type="text" class="user-info__input content__age" placeholder="${user.email}">
-                <input type="text" class="user-info__input content__rating" placeholder="${user.goodThings}" disabled>
+                <input type="text" class="user-info__input content__login" name="login" placeholder="${user.login}">
+                <input type="text" class="user-info__input content__email" name="email" placeholder="${user.email}">
+                <input type="text" class="user-info__input content__name" name="name" placeholder="${user.name}">
                 <input type="file" class="modal__input" id="change__avatar" name="avatar">
-                <input type="submit" class="user-info__submit-input" id="changeProfile">
+                <button type="submit" class="user-info__submit-input" id="changeProfile" 
+                form = "changeProfileForm"></button>
               </div>
             </form>
           </div>

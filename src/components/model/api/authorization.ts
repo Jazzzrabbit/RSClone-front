@@ -47,9 +47,9 @@ export async function  logout() {
   try {
     const response = await fetch(`${SERVER}/logout`);
     console.log(response.status);
-    window.location.href = 'http://localhost:8080/';
+    window.location.href = process.env.SITE_PAGE as string;
   } catch (err) {
-    console.log(err);
+    showMessage('Ошибка выхода', true);
   }
   
 }

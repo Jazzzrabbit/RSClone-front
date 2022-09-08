@@ -16,7 +16,7 @@ import getPageMyParticipates from '../../utils/renderMyParticipateCard';
 import { allApplies, getMyCreatedApplies, getOpenApplies, 
   getNotMyApplies, getMyParticipateApplies, getNotMyParticipateApplies } from '../dataHandlers/applyFilters';
 import {  getParticipantsInApply, getUsersRating  } from '../dataHandlers/userFilters';
-import { allUsers } from '../../model/api/users';
+import { allUsers, changeUser } from '../../model/api/users';
 import { allThanks, createThanks } from '../../model/api/thanks';
 import { showMessage } from '../../utils/showMessage';
 import { getAllThanksWithDescription } from '../dataHandlers/thanksFilters';
@@ -64,6 +64,17 @@ export function sideMenuListener(): void {
       hideFiltersMenu();
     }
   };
+}
+
+
+function changeUserData() {
+  const form = document.querySelector('.user-info__form') as HTMLFormElement;
+
+  form.addEventListener('submit', (event)=> {
+    event.preventDefault();
+    const result = new FormData(form);
+    changeUser(result);
+  });
 }
 
 function userPageRequests(): void {
@@ -247,9 +258,8 @@ export function registerSubmitListener() {
       avatar: elements.avatar.files?.[0],
     };
     const result = new FormData(form);
-    console.log(result.get('login'));
     const dataValidated = registerValidation(user);
-    if (dataValidated.err) return alert(dataValidated.message);
+    if (dataValidated.err) return showMessage(dataValidated.message as string, dataValidated.err);
     registerRequest(result);
   });
 }
@@ -477,4 +487,5 @@ export function addUserListeners(): void {
   giveThanksListener();
   //sortRating();
   renderUserRating();
+  changeUserData();
 }
